@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Projeto_Final_CDM</string>
+    <string name="btnStartStopTrack">Iniciar/Encerrar Rastreio</string>
+</resources>
