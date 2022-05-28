@@ -5,6 +5,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.Context;
@@ -16,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.projeto_final_cdm.R;
+import com.example.projeto_final_cdm.TrackStartStop.viewmodel.GPSViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.CancellationToken;
@@ -26,13 +29,20 @@ import com.google.android.gms.tasks.OnTokenCanceledListener;
 public class GPSActivity extends AppCompatActivity {
     public static final String TAG = "GPAActivity";
     private FusedLocationProviderClient fusedLocationClient;
+    private GPSViewModel gpsviewmodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ActivityResultLauncher<String[]> locationPermissionRequest =
+        gpsviewmodel = new ViewModelProvider(this).get(GPSViewModel.class);
+        gpsviewmodel.getLocation().observe(this, new Observer<Location>() {
+            @Override
+            public void onChanged(Location location) {
+                Log.d(TAG, "onChanged: " + location);
+            }
+        });
+                ActivityResultLauncher<String[]> locationPermissionRequest =
                 registerForActivityResult(new ActivityResultContracts
                                 .RequestMultiplePermissions(), result -> {
                             Boolean fineLocationGranted = result.getOrDefault(
@@ -41,10 +51,11 @@ public class GPSActivity extends AppCompatActivity {
                                     Manifest.permission.ACCESS_COARSE_LOCATION,false);
                             if (fineLocationGranted != null && fineLocationGranted) {
                                 LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 3, new LocationListener(){
+                                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, new LocationListener(){
                                     @Override
                                     public void onLocationChanged (@NonNull Location location){
                                         Log.d(TAG, "onLocationChanged: " + location);
+                                        gpsviewmodel.setLocation(location);
                                     }
                                 });
                             } else if (coarseLocationGranted != null && coarseLocationGranted) {
