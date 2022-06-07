@@ -29,6 +29,9 @@
         <activity
             android:name=".TrackStartStop.view.MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".Sensores.GPSActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

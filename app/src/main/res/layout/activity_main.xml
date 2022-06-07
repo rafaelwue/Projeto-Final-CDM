@@ -5,11 +5,22 @@
     android:id="@+id/MainDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".TrackStartStop.view.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtLatLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtLatLong"
+            android:textAlignment="center"
+            android:textColor="#263238"
+            android:translationY="238dp"></TextView>
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
