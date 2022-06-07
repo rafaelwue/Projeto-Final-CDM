@@ -19,7 +19,9 @@
             android:text="@string/txtLatLong"
             android:textAlignment="center"
             android:textColor="#263238"
-            android:translationY="238dp"></TextView>
+            android:translationY="238dp">
+
+        </TextView>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
