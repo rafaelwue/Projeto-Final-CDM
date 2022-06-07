@@ -2,4 +2,6 @@
     <string name="app_name">Projeto_Final_CDM</string>
     <string name="btnStopTrack">Encerrar Rastreio</string>
     <string name="txtLatLong">txtLatLong</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>
