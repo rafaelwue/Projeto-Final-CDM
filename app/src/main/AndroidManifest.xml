@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Projeto_Final_CDM"
         tools:targetApi="31">
         <activity
+            android:name=".FormCadastro"
+            android:exported="false" />
+        <activity
             android:name=".cadastroUsuario"
             android:exported="false" />
         <activity
