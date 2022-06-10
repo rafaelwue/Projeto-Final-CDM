@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.projeto_final_cdm">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +18,10 @@
         android:theme="@style/Theme.Projeto_Final_CDM"
         tools:targetApi="31">
         <activity
-            android:name=".TrackStartStop.view.FormLogin"
+            android:name=".cadastroUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".Aplicativo.view.FormLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +30,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TrackStartStop.view.MainActivity"
+            android:name=".Aplicativo.view.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Sensores.GPSActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

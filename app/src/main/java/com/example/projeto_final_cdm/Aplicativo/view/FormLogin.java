@@ -1,9 +1,8 @@
-package com.example.projeto_final_cdm.TrackStartStop.view;
+package com.example.projeto_final_cdm.Aplicativo.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 

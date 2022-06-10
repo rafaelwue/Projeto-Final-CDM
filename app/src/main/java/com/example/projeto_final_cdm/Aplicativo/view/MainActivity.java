@@ -1,12 +1,10 @@
-package com.example.projeto_final_cdm.TrackStartStop.view;
+package com.example.projeto_final_cdm.Aplicativo.view;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.projeto_final_cdm.R;
-import com.example.projeto_final_cdm.TrackStartStop.viewmodel.GPSViewModel;
+import com.example.projeto_final_cdm.Aplicativo.viewmodel.GPSViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
