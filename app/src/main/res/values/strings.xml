@@ -6,4 +6,10 @@
     <string name="nav_close">Close</string>
     <string name="entrar">Entrar</string>
     <string name="title_cadastro">Cadastre-se</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_debug">Debug</string>
+    <string name="menu_users">Listar Usuários</string>
+    <string name="menu_addUser">Cadastrar Usuário</string>
+
 </resources>

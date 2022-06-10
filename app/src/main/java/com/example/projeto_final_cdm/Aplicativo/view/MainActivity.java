@@ -8,9 +8,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.databinding.tool.store.Location;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.projeto_final_cdm.R;
@@ -51,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void goToCadastro(View view) {
+        Intent intent = new Intent(MainActivity.this,FormCadastro.class);
+        startActivity(intent);
+        finish();
     }
 }
 

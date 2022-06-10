@@ -7,22 +7,23 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"/>
+        android:title="@string/menu_home" />
     <item
         android:id="@+id/nav_debug"
         android:icon="@drawable/ic_baseline_construction_24"
-        android:title="Debug"/>
+        android:title="@string/menu_debug" />
 
     <item android:title="Usuários">
         <menu>
             <item
                 android:id="@+id/nav_users"
                 android:icon="@drawable/ic_baseline_person_24"
-                android:title="Listar Usuários"/>
+                android:title="@string/menu_users" />
             <item
                 android:id="@+id/nav_addUser"
                 android:icon="@drawable/ic_baseline_person_add_24"
-                android:title="Cadastrar Usuário"/>
+                android:title="@string/menu_addUser" />
+
         </menu>
     </item>
 </menu>
