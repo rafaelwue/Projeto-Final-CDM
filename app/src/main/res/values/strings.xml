@@ -1,15 +1,7 @@
 <resources>
     <string name="app_name">Projeto_Final_CDM</string>
-    <string name="btnStopTrack">Encerrar Rastreio</string>
-    <string name="txtLatLong">txtLatLong</string>
-    <string name="nav_open">Open</string>
-    <string name="nav_close">Close</string>
     <string name="entrar">Entrar</string>
     <string name="title_cadastro">Cadastre-se</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_debug">Debug</string>
-    <string name="menu_users">Listar Usuários</string>
-    <string name="menu_addUser">Cadastrar Usuário</string>
-
+    <string name="btnCadastrarUsuarios">Cadastrar Usuário</string>
+    <string name="btnListarUsuarios">Listar Usuários</string>
 </resources>
