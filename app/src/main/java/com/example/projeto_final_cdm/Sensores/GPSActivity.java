@@ -20,8 +20,8 @@ import com.example.projeto_final_cdm.R;
 import com.example.projeto_final_cdm.Aplicativo.viewmodel.GPSViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
-
 public class GPSActivity extends AppCompatActivity {
+    /*
     public static final String TAG = "GPAActivity";
     private FusedLocationProviderClient fusedLocationClient;
     private GPSViewModel gpsviewmodel;
@@ -65,4 +65,6 @@ public class GPSActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_COARSE_LOCATION
         });
     }
+
+ */
 }

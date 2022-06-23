@@ -27,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public void goToLocalizacao(View view) {
+        Intent intent = new Intent(MainActivity.this, LocationActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void goToCadastroUsuario(View view) {
         Intent intent = new Intent(MainActivity.this, FormCadastro.class);
         startActivity(intent);
