@@ -1,24 +1,13 @@
 package com.example.projeto_final_cdm.Aplicativo.view;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
-import android.databinding.tool.store.Location;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.projeto_final_cdm.R;
-import com.example.projeto_final_cdm.Aplicativo.viewmodel.GPSViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +24,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToCadastroUsuario(View view) {
-        Intent intent = new Intent(MainActivity.this, FormCadastro.class);
+        Intent intent = new Intent(MainActivity.this, CadastroActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToUsuarios(View view) {
+        Intent intent = new Intent(MainActivity.this, UsuariosActivity.class);
         startActivity(intent);
         finish();
     }

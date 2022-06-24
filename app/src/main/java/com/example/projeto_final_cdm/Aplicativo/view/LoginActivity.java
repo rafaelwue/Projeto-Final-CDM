@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projeto_final_cdm.R;
 
-public class FormLogin extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class FormLogin extends AppCompatActivity {
     }
 
     public void goToMain(View view) {
-        Intent intent = new Intent(FormLogin.this,MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
     }
