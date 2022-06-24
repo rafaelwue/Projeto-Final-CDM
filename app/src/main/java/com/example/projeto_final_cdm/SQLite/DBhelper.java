@@ -4,7 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
 import android.widget.Toast;
+
+import com.google.type.DateTime;
 
 public class DBhelper extends SQLiteOpenHelper {
     private Context context;
@@ -20,7 +23,7 @@ public class DBhelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String stm = "create table usuarios (codigo integer primary key, usuario text, email text, senha text, tipo text);";
         sqLiteDatabase.execSQL(stm);
-        String stm2 = "create table usuariosPosicao(codigo integer primary key, latitude long, longitude long, dataposicao datetime, enviado boolean);";
+        String stm2 = "create table usuariosPosicao(codigo integer primary key, latitude long, longitude long, dataposicao long, enviado boolean);";
         sqLiteDatabase.execSQL(stm2);
     }
 
@@ -46,13 +49,21 @@ public class DBhelper extends SQLiteOpenHelper {
         }
     }
 
-    public void listarUsuarios(String usuario){
-        SQLiteDatabase db = this.getReadableDatabase();
+    public void gravaPosicao(Location location) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
-        String[] columns = {
+        values.put("latitude", location.getLatitude());
+        values.put("longitude", location.getLongitude());
+        values.put("dataposicao", location.getTime());
+        values.put("enviado", true);
+        long result = db.insert("usuariosPosicao", null, values);
 
+        if (result == -1) {
+            Toast.makeText(context, "Não foi possivel gravar os dados.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Dados gravados com successo.", Toast.LENGTH_SHORT).show();
         }
-
     }
 }
 

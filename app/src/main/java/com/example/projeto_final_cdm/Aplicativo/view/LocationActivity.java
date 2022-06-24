@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projeto_final_cdm.R;
+import com.example.projeto_final_cdm.SQLite.DBhelper;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -81,6 +82,8 @@ public class LocationActivity extends AppCompatActivity {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
+                DBhelper db = new DBhelper(LocationActivity.this);
+                db.gravaPosicao(location);
                 Log.d(TAG, "onLocationChanged: " + location);
 
             }
