@@ -14,7 +14,7 @@ public class PosicaoDBServiceFirebase implements PosicaoDBServices{
     private CollectionReference collection;
     public PosicaoDBServiceFirebase() {
         db = FirebaseFirestore.getInstance();
-        collection = db.collection("prof");
+        collection = db.collection("telemetria");
     }
     @Override
     public void salvar(Location loc) {

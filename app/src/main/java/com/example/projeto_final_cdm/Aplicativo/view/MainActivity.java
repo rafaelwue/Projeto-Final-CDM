@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToUsuarios(View view) {
-        Intent intent = new Intent(MainActivity.this, UsuariosActivity.class);
+        Intent intent = new Intent(MainActivity.this, HistoricoPosActivity.class);
         startActivity(intent);
         finish();
     }
