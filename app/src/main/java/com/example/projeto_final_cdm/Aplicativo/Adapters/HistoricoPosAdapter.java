@@ -29,15 +29,15 @@ public class HistoricoPosAdapter extends RecyclerView.Adapter<HistoricoViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull HistoricoViewHolder holder, int position) {
-        holder.id_view.setText(localizacaoModelList.get(position).getId());
-        holder.latitude_view.setText(localizacaoModelList.get(position).getLatitude().intValue());
-        holder.longitude_view.setText(localizacaoModelList.get(position).getLongitude().intValue());
-        holder.time_view.setText(localizacaoModelList.get(position).getTime().intValue());
+        holder.id_view.setText(localizacaoModelList.get(position).getId().toString());
+        holder.latitude_view.setText(localizacaoModelList.get(position).getLatitude().toString());
+        holder.longitude_view.setText(localizacaoModelList.get(position).getLongitude().toString());
+        holder.time_view.setText(localizacaoModelList.get(position).getTime().toString());
         holder.enviado_view.setText(localizacaoModelList.get(position).getEnviado().toString());
     }
 
     @Override
     public int getItemCount() {
-        return localizacaoModelList != null ? localizacaoModelList.size() : 0;
+        return localizacaoModelList.size();
     }
 }

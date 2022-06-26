@@ -3,10 +3,10 @@ package com.example.projeto_final_cdm.SQLite;
 public class LocalizacaoModel {
     private Integer id;
     private Double latitude, longitude;
-    private Long time;
+    private String time;
     private Boolean enviado;
 
-    public LocalizacaoModel(Integer id, Double latitude, Double longitude, Long time, Boolean enviado) {
+    public LocalizacaoModel(Integer id, Double latitude, Double longitude, String time, Boolean enviado) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -34,11 +34,11 @@ public class LocalizacaoModel {
         this.longitude = longitude;
     }
 
-    public Long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

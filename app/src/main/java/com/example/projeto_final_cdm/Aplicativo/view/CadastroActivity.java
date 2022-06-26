@@ -1,25 +1,14 @@
 package com.example.projeto_final_cdm.Aplicativo.view;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.projeto_final_cdm.R;
@@ -44,16 +33,23 @@ public class CadastroActivity extends AppCompatActivity {
         rdoAdmin = (RadioButton) findViewById(R.id.rdoAdmin);
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 DBhelper db = new DBhelper(CadastroActivity.this);
-                db.cadastrar(txtUsuario.getText().toString(),
-                        txtEmail.getText().toString(),
-                        txtSenha.getText().toString(),
-                        admChk);
+                if (db.checkUsuarios(txtUsuario.toString())){
+                    Toast.makeText(CadastroActivity.this, "Usuário já existe!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.cadastrar(txtUsuario.getText().toString(),
+                            txtEmail.getText().toString(),
+                            txtSenha.getText().toString(),
+                            admChk);
+                    Toast.makeText(CadastroActivity.this, "Usuário gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
 
     public void onRadioButtonClicked (View view) {
         boolean checked = ((RadioButton) view).isChecked();

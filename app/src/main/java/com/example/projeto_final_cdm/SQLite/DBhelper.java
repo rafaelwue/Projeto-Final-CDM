@@ -12,13 +12,17 @@ import com.example.projeto_final_cdm.Aplicativo.Services.PosicaoDBServiceFirebas
 import com.example.projeto_final_cdm.Aplicativo.Services.PosicaoDBServices;
 import com.example.projeto_final_cdm.Aplicativo.Services.PosicaoServices;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+import java.util.TimeZone;
 
 public class DBhelper extends SQLiteOpenHelper {
     private Context context;
     private static final String DB_NAME = "App_Telemetria.db";
-    private static final Integer DB_VERSION = 1;
+    private static final Integer DB_VERSION = 4;
 
     public DBhelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -27,17 +31,18 @@ public class DBhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String stm = "create table usuarios (codigo integer primary key, usuario text, email text, senha text, tipo text);";
+        String stm = "CREATE TABLE IF NOT EXISTS usuarios (id integer primary key AUTOINCREMENT, usuario text, email text, senha text, tipo text);";
         sqLiteDatabase.execSQL(stm);
-        String stm2 = "create table usuariosPosicao(codigo integer primary key, latitude long, longitude long, dataposicao long, enviado boolean);";
+        String stm2 = "CREATE TABLE IF NOT EXISTS usuariosPosicao(id integer primary key AUTOINCREMENT, latitude long, longitude long, dataposicao text, enviado boolean);";
         sqLiteDatabase.execSQL(stm2);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldversion, int newversion) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS usuarios");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS usuariosPosicao");
+        onCreate(sqLiteDatabase);
     }
-
     public void cadastrar(String usuario, String email, String senha, String tipo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -55,13 +60,27 @@ public class DBhelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean checkUsuarios(String value){
+        String query = "SELECT * FROM " + "usuarios" + " WHERE " + "usuario" + " = ?";
+        String[] whereArgs = {value};
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, whereArgs);
+
+        int count = cursor.getCount();
+            cursor.close();
+        return count >= 1;
+    }
+
     public void gravaPosicao(Location location) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        Date date = new Date(location.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
 
         values.put("latitude", location.getLatitude());
         values.put("longitude", location.getLongitude());
-        values.put("dataposicao", location.getTime());
+        values.put("dataposicao", sdf.format(date));
         values.put("enviado", true);
         long result = db.insert("usuariosPosicao", null, values);
 
@@ -74,17 +93,18 @@ public class DBhelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Dados gravados com successo.", Toast.LENGTH_SHORT).show();
         }
     }
+
     public List<LocalizacaoModel> selectPosicoes(){
         SQLiteDatabase db = this.getWritableDatabase();
         List<LocalizacaoModel> localizacaoList = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM usuariosPosicao", null);
         while(cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex("ID"));
-            Double latitude = cursor.getDouble(cursor.getColumnIndex("Latitude"));
-            Double longitude = cursor.getDouble(cursor.getColumnIndex("Longitude"));
-            Long dataposicao = cursor.getLong(cursor.getColumnIndex("Dataposicao"));
-            Boolean enviado = cursor.getInt(cursor.getColumnIndex("Enviado")) > 0;
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            Double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow("latitude"));
+            Double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow("longitude"));
+            String dataposicao = cursor.getString(cursor.getColumnIndexOrThrow("dataposicao"));
+            Boolean enviado = cursor.getInt(cursor.getColumnIndexOrThrow("enviado")) > 0;
             localizacaoList.add(new LocalizacaoModel(id, latitude, longitude, dataposicao, enviado));
         }
         cursor.close();
