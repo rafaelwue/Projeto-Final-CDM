@@ -4,4 +4,9 @@
     <string name="title_cadastro">Cadastre-se</string>
     <string name="btnCadastrarUsuarios">Cadastrar Usuário</string>
     <string name="btnListarUsuarios">Listar Usuários</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="time">Time</string>
+    <string name="enviado">Enviado</string>
+    <string name="id">ID</string>
 </resources>
