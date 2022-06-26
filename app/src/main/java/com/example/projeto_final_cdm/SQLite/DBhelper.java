@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DBhelper extends SQLiteOpenHelper {
     private Context context;
-    private static final String DB_NAME = "App_Telemetria";
+    private static final String DB_NAME = "App_Telemetria.db";
     private static final Integer DB_VERSION = 1;
 
     public DBhelper(Context context) {
