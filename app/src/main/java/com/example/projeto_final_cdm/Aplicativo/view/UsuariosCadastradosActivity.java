@@ -9,27 +9,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.projeto_final_cdm.Aplicativo.Adapters.HistoricoPosAdapter;
+import com.example.projeto_final_cdm.Aplicativo.Adapters.UsuariosCadastradosAdapter;
 import com.example.projeto_final_cdm.R;
 import com.example.projeto_final_cdm.SQLite.DBhelper;
 
-public class HistoricoPosActivity extends AppCompatActivity {
+public class UsuariosCadastradosActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    HistoricoPosAdapter historicoPosAdapter;
+    UsuariosCadastradosAdapter usuariosCadastradosAdapter;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_historicopos);
+        setContentView(R.layout.activity_usuarios_cadastrados);
         getSupportActionBar().hide();
 
         configurarRecycler();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBarUsers);
         progressBar.setVisibility(View.GONE);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setAdapter(historicoPosAdapter);
+        recyclerView.setAdapter(usuariosCadastradosAdapter);
         recyclerView.setLayoutManager(layoutManager);
         layoutManager.setOrientation(layoutManager.VERTICAL);
     }
@@ -37,12 +37,12 @@ public class HistoricoPosActivity extends AppCompatActivity {
     private void configurarRecycler(){
         DBhelper dBhelper = new DBhelper(this);
         recyclerView = (RecyclerView)findViewById(R.id.RecyclerViewUsers);
-        historicoPosAdapter = new HistoricoPosAdapter(dBhelper.selectPosicoes());
+        usuariosCadastradosAdapter = new UsuariosCadastradosAdapter(dBhelper.selectUsuarios());
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(HistoricoPosActivity.this, MainActivity.class));
+        startActivity(new Intent(UsuariosCadastradosActivity.this, MainActivity.class));
         return;
     }
 }

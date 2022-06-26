@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projeto_final_cdm.Aplicativo.ViewHolders.HistoricoViewHolder;
 import com.example.projeto_final_cdm.R;
-import com.example.projeto_final_cdm.SQLite.LocalizacaoModel;
+import com.example.projeto_final_cdm.Aplicativo.Model.LocalizacaoModel;
 
 import java.util.List;
 

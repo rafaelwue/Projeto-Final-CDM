@@ -8,21 +8,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
 import android.widget.Toast;
 
+import com.example.projeto_final_cdm.Aplicativo.Model.LocalizacaoModel;
+import com.example.projeto_final_cdm.Aplicativo.Model.UsuariosModel;
 import com.example.projeto_final_cdm.Aplicativo.Services.PosicaoDBServiceFirebase;
-import com.example.projeto_final_cdm.Aplicativo.Services.PosicaoDBServices;
-import com.example.projeto_final_cdm.Aplicativo.Services.PosicaoServices;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.TimeZone;
 
 public class DBhelper extends SQLiteOpenHelper {
     private Context context;
     private static final String DB_NAME = "App_Telemetria.db";
-    private static final Integer DB_VERSION = 4;
+    private static final Integer DB_VERSION = 5;
 
     public DBhelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -43,7 +41,8 @@ public class DBhelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS usuariosPosicao");
         onCreate(sqLiteDatabase);
     }
-    public void cadastrar(String usuario, String email, String senha, String tipo) {
+    public boolean cadastrar(String usuario, String email, String senha, String tipo) {
+        if (!checkUsuarios(usuario)){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -53,11 +52,27 @@ public class DBhelper extends SQLiteOpenHelper {
         values.put("tipo", tipo);
         long result = db.insert("usuarios", null, values);
 
-        if (result == -1) {
-            Toast.makeText(context, "Não foi possivel gravar os dados.", Toast.LENGTH_SHORT).show();
+            return result != -1;
         } else {
-            Toast.makeText(context, "Dados gravados com successo.", Toast.LENGTH_SHORT).show();
+            return false;
         }
+    }
+
+    public List<UsuariosModel> selectUsuarios(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<UsuariosModel> usuariosModelList = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM usuarios", null);
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            String usuario = cursor.getString(cursor.getColumnIndexOrThrow("usuario"));
+            String senha = cursor.getString(cursor.getColumnIndexOrThrow("senha"));
+            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+            String tipo = cursor.getString(cursor.getColumnIndexOrThrow("tipo"));
+            usuariosModelList.add(new UsuariosModel(id, usuario, senha, email, tipo));
+        }
+        cursor.close();
+        return usuariosModelList;
     }
 
     public boolean checkUsuarios(String value){
@@ -71,6 +86,18 @@ public class DBhelper extends SQLiteOpenHelper {
             cursor.close();
         return count >= 1;
     }
+
+    public String checkUsrPermission(String value){
+        String query = " SELECT " + " tipo " + " FROM " + "usuarios" + " WHERE " + " usuario " + "= ?";
+        String[] whereArgs = {value};
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, whereArgs);
+
+            cursor.close();
+        return query;
+    }
+
 
     public void gravaPosicao(Location location) {
         SQLiteDatabase db = this.getWritableDatabase();

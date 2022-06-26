@@ -1,4 +1,4 @@
-package com.example.projeto_final_cdm.SQLite;
+package com.example.projeto_final_cdm.Aplicativo.Model;
 
 public class LocalizacaoModel {
     private Integer id;
