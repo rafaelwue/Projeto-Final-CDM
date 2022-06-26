@@ -13,15 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="188dp"
         android:onClick="goToHistorico"
         android:text="Historico"
-        app:layout_constraintBottom_toTopOf="@+id/btnCadastrarUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCadastrarUsuario"
+        app:layout_constraintVertical_bias="0.023"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnListarUsuarios"
@@ -29,29 +27,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnCadastrarUsuario"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="276dp"
+        android:layout_marginTop="296dp"
         android:onClick="goToUsuarios"
         android:text="@string/btnListarUsuarios"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnCadastrarUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginTop="12dp"
         android:onClick="goToCadastroUsuario"
         android:text="@string/btnCadastrarUsuarios"
-        app:layout_constraintBottom_toTopOf="@+id/btnListarUsuarios"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/btnListarUsuarios"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="-16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,6 +46,7 @@ public class CadastroActivity extends AppCompatActivity {
                             txtSenha.getText().toString(),
                             admChk);
                     Toast.makeText(CadastroActivity.this, "Usuário gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CadastroActivity.this, MainActivity.class));
                 }
             }
         });

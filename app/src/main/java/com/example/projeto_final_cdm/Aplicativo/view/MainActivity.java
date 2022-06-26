@@ -24,7 +24,7 @@ import com.example.projeto_final_cdm.R;
 import com.example.projeto_final_cdm.SQLite.DBhelper;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "GPSActivity";
+    public static final String TAG = "MainActivity";
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
